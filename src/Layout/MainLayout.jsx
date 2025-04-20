@@ -10,7 +10,7 @@ const MainLayout = () => {
             <Navbar></Navbar>
            </div>
             {/* this is a dynamic part */}
-            <div className='z-10'>
+            <div className='z-10 py-18'>
             <Outlet></Outlet>
             </div>
            

@@ -25,10 +25,9 @@ const Banner = () => {
                             transition={{ duration: 2, color: ['red', 'blue'], delay: 1, ease: 'linear', repeat: Infinity }}
                             className="text-5xl font-bold">Lets <motion.span animate={{ color: ['red', 'purple', 'blue'] }} transition={{duration:2,repeat:Infinity}}>job</motion.span> for you!</h1>
                         <p className="py-6 ">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Each month, more than 3 million job seekers turn to website in their search for work, making over 140,000 applications every single day
                         </p>
-                        <button  className="btn hover:scale-120 btn-primary">Get Started</button>
+                        <button  className="btn hover:scale-120 btn-primary font-bold">Get Started</button>
                     </div>
                 </div>
             </div>

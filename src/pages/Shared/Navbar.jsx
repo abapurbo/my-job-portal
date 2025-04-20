@@ -3,12 +3,14 @@ import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../../Context/AuthContext/AuthContext';
 import logo from '../../assets/logo.png'
 const Navbar = () => {
-    const { user, signOutUser } = useContext(AuthContext)
+    const { user, signOutUser, photo } = useContext(AuthContext)
+    console.log('nav',photo)
     const links = <div className='space-x-7 text-[15px] font-semibold'>
-        <NavLink to='/' className={({isActive})=>isActive?'btn outline-2 font-bold outline-accent':''}>Home</NavLink>
-        <NavLink to='/finalJob' className={({isActive})=>isActive?'btn outline-2 font-bold outline-accent':''}>Final Job</NavLink>
-        <NavLink to='/recruiters' className={({isActive})=>isActive?'btn outline-2 font-bold outline-accent':''}>Recruiters</NavLink>
-        <NavLink to='/contact' className={({isActive})=>isActive?'btn outline-2 font-bold outline-accent':''}>Contact</NavLink>
+        <NavLink to='/' className={({ isActive }) => isActive ? 'btn outline-2 font-bold outline-accent' : ''}>Home</NavLink>
+        <NavLink to='/myApplication' className={({ isActive }) => isActive ? 'btn outline-2 font-bold outline-accent' : ''}>My Application</NavLink>
+        <NavLink to='/addJob' className={({ isActive }) => isActive ? 'btn outline-2 font-bold outline-accent' : ''}>Add Jobs</NavLink>
+        <NavLink to='/postJob' className={({ isActive }) => isActive ? 'btn outline-2 font-bold outline-accent' : ''}>Post Job</NavLink>
+   
     </div>
     const handleSignOUt = () => {
         signOutUser()
@@ -28,7 +30,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-               <img src={logo} className='w-10' alt="job application image" />
+                <img src={logo} className='w-10' alt="job application image" />
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -37,12 +39,13 @@ const Navbar = () => {
             </div>
             <div className="navbar-end space-x-4">
                 {
-                    user ? <Link onClick={handleSignOUt}>
-                        <button className='btn'>Sign Out</button>
-                    </Link> : <div className='space-x-4'>
-                        <Link to='/register' className='font-semibold'>Register</Link>
+                    user ? <div className='flex items-center'>
+                        <img src={photo} className='w-7 mr-6 object-center rounded-full' alt="user photo" />
+                        <Link onClick={handleSignOUt}><button className='btn btn-primary font-bold'>Sign Out</button></Link>
+                    </div> : <div className='space-x-4'>
+                        <NavLink to='/register' className={({isActive})=>isActive?'underline underline-offset-4 decoration-blue-400 font-semibold':'font-semibold'}>Register</NavLink>
                         <Link to='/signIn'>
-                            <button className='btn btn-accent'>Sign In</button>
+                            <button className='btn btn-primary text-white font-bold'>Sign In</button>
                         </Link>
                     </div>
                 }
