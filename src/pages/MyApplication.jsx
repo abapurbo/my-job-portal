@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import UseAuth from '../Hooks/UseHooks';
 import axios from 'axios';
+import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 
 const MyApplication = () => {
     const {user}=UseAuth();
-    const [jobs,setJobs]=useState([]);
+    const [jobApplication,setJobApplication]=useState([]);
+
+    const axiosSecure=UseAxiosSecure()
     useEffect(()=>{
-        axios.get(`http://localhost:4000/job-application?email=${user?.email}`)
-        .then(data=>setJobs(data.data))
-    },[user.email,jobs])
+         axiosSecure.get(`/job-application?email=${user.email}`)
+        .then(data=>setJobApplication(data.data))
+    },[user.email,axiosSecure])
     
     // delete job application
     const handleApplicationDelete=id=>{
@@ -30,7 +33,7 @@ const MyApplication = () => {
                 <tbody>
                     {/* row 1 */}
                    {
-                  jobs.length==0?'Not found': jobs.map(job=>(
+                  jobApplication.length==0?'Not found': jobApplication.map(job=>(
                     <tr key={job._id}>
                     <th>
                         <label>

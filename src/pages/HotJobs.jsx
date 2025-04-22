@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import HotJobCard from './HotJobCard';
+import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 
 const HotJobs = () => {
     const [jobs, setJobs] = useState([]);
-
+    const axiosSecure = UseAxiosSecure()
     useEffect(() => {
-        fetch('http://localhost:4000/jobs')
-            .then(res => res.json())
-            .then(data => setJobs(data))
-    }, [])
+        axiosSecure.get('http://localhost:4000/jobs')
+            .then(data => setJobs(data.data))
+    }, [axiosSecure])
     return (
         <div>
             <div className='text-center my-10 space-y-2'>
@@ -16,9 +16,9 @@ const HotJobs = () => {
                 <p className='text-xl font-semibold text-gray-400'>Search and connect with the right candidates faster</p>
             </div>
             <div className='grid lg:grid-cols-4 mx-10 my-10 gap-5 '>
-             
+
                 {
-                    jobs.map(job => <HotJobCard key={job._id} job={job}></HotJobCard>)
+                    jobs?.map(job => <HotJobCard key={job._id} job={job}></HotJobCard>)
                 }
             </div>
         </div>
